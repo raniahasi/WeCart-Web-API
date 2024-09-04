@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Electro - HTML Ecommerce Template</title>
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link type="text/css" rel="stylesheet" href="css2/bootstrap.min.css" />
+
+    <!-- Slick -->
+    <link type="text/css" rel="stylesheet" href="css2/slick.css" />
+    <link type="text/css" rel="stylesheet" href="css2/slick-theme.css" />
+
+    <!-- nouislider -->
+    <link type="text/css" rel="stylesheet" href="css2/nouislider.min.css" />
+
+    <!-- Font Awesome Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Custom stylesheet -->
+    <link type="text/css" rel="stylesheet" href="css2/style.css" />
+
+    <style>
+        /* Add your custom styles here */
+        #header {
+            background-color: #222;
+        }
+
+        #top-header {
+            background-color: #222;
+        }
+
+        .main .categories .category img {
+            border-radius: 10px;
+        }
+
+        footer {
+            background-color: #222;
+            color: white;
+            padding-top: 80px;
+        }
+
+        .bg-dark {
+            background-color: #222 !important;
+        }
+
+        footer .payment-options img {
+            margin: 5px;
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        footer .footer-links {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        footer .footer-links li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        footer .footer-links li a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .col-md-9 {
+            font-size: smaller;
+        }
+
+        #navbarNav {
+            font-size: smaller;
+        }
+
+        .cart {
+            width: 40px;
+            height: 40px;
+        }
+
+        .category-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .category-item img {
+            width: 60%;
+            height: 195px;
+            object-fit: cover;
+        }
+
+        .category-item p {
+            margin-top: 10px;
+            font-weight: bold;
+            text-align: center;
+            font-size: small;
+            color: #545454;
+        }
+
+        .mb-5 {
+            font-size: 15px;
+            color: #323131de;
+            display: flex;
+            margin-top: -80px;
+            justify-content: center;
+            font-family: Poppins-Medium;
+        }
+
+        .links {
+            color: #383838;
+        }
+
+        .main-content {
+            margin-top: 150px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e5e5e5;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .tab-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .tab-buttons button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            background: #f1f1f1;
+            cursor: pointer;
+        }
+
+        .tab-buttons button.active {
+            background: #D10024;
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group input[type="checkbox"] {
+            width: auto;
+        }
+
+        .form-actions {
+            text-align: center;
+        }
+
+        .form-actions button {
+            background: #D10024;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header>
+        <!-- TOP HEADER -->
+        <div id="top-header">
+            <div class="container">
+                <ul class="header-links pull-left">
+                    <li><a href="#"><i class="fa fa-phone"></i> +962772382250</a></li>
+                    <li><a href="#"><i class="fa fa-envelope-o"></i> Info@WeCart.com</a></li>
+                    <li><a href="#"><i class="fa fa-map-marker"></i> 21110 Irbid</a></li>
+                </ul>
+                <ul class="header-links pull-right">
+                    <li><a href="#"><i class="fa fa-language"></i> EN/AR</a></li>
+                    <li><a href="#" id="accountBtn"><i class="fa fa-user-o"></i> My Account</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- /TOP HEADER -->
+
+        <!-- MAIN HEADER -->
+        <div id="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="header-logo">
+                            <a href="#" class="logo">
+                                <img src="./img/logo.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="header-search">
+                            <form>
+                                <select class="input-select" id="category-select">
+                                    <!-- Categories will be populated here dynamically -->
+                                </select>
+                                <input class="input" placeholder="Search here" id="search-input">
+                                <button type="button" class="search-btn" onclick="filterProducts()">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-3 clearfix">
+                        <div class="header-ctn">
+                            <div>
+                                <a href="#">
+                                    <i class="fa fa-heart-o"></i>
+                                    <span>Your Wishlist</span>
+                                    <div class="qty">2</div>
+                                </a>
+                            </div>
+                            <div class="cart-icon">
+                                <a href="shoping-cart.html">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    <span>Your Cart</span>
+                                    <div class="qty">3</div>
+                                </a>
+                            </div>
+                            <div class="menu-toggle">
+                                <a href="#">
+                                    <i class="fa fa-bars"></i>
+                                    <span>Menu</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /MAIN HEADER -->
+    </header>
+    <!-- /HEADER -->
+
+    <!-- NAVIGATION -->
+    <nav id="navigation">
+        <div class="container">
+            <div id="responsive-nav">
+                <ul class="main-nav nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="product.html">Categories</a></li>
+                    <li><a href="#">Wishlist</a></li>
+                    <li><a href="#">Reviews</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- /NAVIGATION -->
+
+    <!-- BREADCRUMB -->
+    <div id="breadcrumb" class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb-tree">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">All Categories</a></li>
+                        <li><a href="#">Gaming Pcs</a></li>
+                        <li class="active">Gaming Pc RTX 4090 (227,490 Results)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /BREADCRUMB -->
+
+    <!-- SECTION -->
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <!-- ASIDE -->
+                <div id="aside" class="col-md-3">
+                    <!-- aside Widget -->
+                    <div class="aside">
+                        <h3 class="aside-title">Categories</h3>
+                        <div class="checkbox-filter" id="category-filter">
+                            <!-- Categories will be populated here dynamically -->
+                        </div>
+                    </div>
+                    <!-- /aside Widget -->
+
+                    <!-- aside Widget -->
+                    <div class="aside">
+                        <h3 class="aside-title">Price</h3>
+                        <div class="price-filter">
+                            <div id="price-slider"></div>
+                            <div class="input-number price-min">
+                                <input id="price-min" type="number">
+                                <span class="qty-up">+</span>
+                                <span class="qty-down">-</span>
+                            </div>
+                            <span>-</span>
+                            <div class="input-number price-max">
+                                <input id="price-max" type="number">
+                                <span class="qty-up">+</span>
+                                <span class="qty-down">-</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /aside Widget -->
+                </div>
+                <!-- /ASIDE -->
+
+                <!-- STORE -->
+                <div id="store" class="col-md-9">
+                    <!-- store top filter -->
+                    <div class="store-filter clearfix">
+                        <div class="store-sort">
+                            <label>
+                                Sort By:
+                                <select class="input-select">
+                                    <option value="0">Popular</option>
+                                    <option value="1">Position</option>
+                                </select>
+                            </label>
+
+                            <label>
+                                Show:
+                                <select class="input-select">
+                                    <option value="0">20</option>
+                                    <option value="1">50</option>
+                                </select>
+                            </label>
+                        </div>
+                        <ul class="store-grid">
+                            <li class="active"><i class="fa fa-th"></i></li>
+                            <li><a href="#"><i class="fa fa-th-list"></i></a></li>
+                        </ul>
+                    </div>
+                    <!-- /store top filter -->
+
+                    <!-- store products -->
+                    <div class="row" id="product-list">
+                        <!-- Products will be injected here dynamically -->
+                    </div>
+                    <!-- /store products -->
+
+                    <!-- store bottom filter -->
+                    <div class="store-filter clearfix">
+                        <span class="store-qty">Showing 20-100 products</span>
+                        <ul class="store-pagination">
+                            <li class="active">1</li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                        </ul>
+                    </div>
+                    <!-- /store bottom filter -->
+                </div>
+                <!-- /STORE -->
+            </div>
+        </div>
+    </div>
+    <!-- /SECTION -->
+
+    <!-- NEWSLETTER -->
+    <div id="newsletter" class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="newsletter">
+                        <p>Sign Up for the <strong>NEWSLETTER</strong></p>
+                        <form>
+                            <input class="input" type="email" placeholder="Enter Your Email">
+                            <button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
+                        </form>
+                        <ul class="newsletter-follow">
+                            <li>
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-pinterest"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /NEWSLETTER -->
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col payment-options">
+                    <img src="images/wecart.png" alt="WeCart" class="img-fluid">
+                    <img src="images/apple_pay.png" alt="Apple Pay" class="img-fluid">
+                    <img src="images/zelle.png" alt="Zelle" class="img-fluid">
+                    <img src="images/cash.png" alt="Cash" class="img-fluid">
+                    <img src="images/mastercard.png" alt="MasterCard" class="img-fluid">
+                    <img src="images/visa.png" alt="Visa" class="img-fluid">
+                    <img src="images/PayPal.png" alt="PayPal" class="img-fluid">
+                </div>
+            </div>
+            <ul class="footer-links list-inline mt-3">
+                <li class="list-inline-item"><a href="#">Home Page</a></li>
+                <li class="list-inline-item"><a href="#">About Us</a></li>
+                <li class="list-inline-item"><a href="#">My Account</a></li>
+                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                <li class="list-inline-item"><a href="#">Delivery</a></li>
+                <li class="list-inline-item"><a href="#">Refund</a></li>
+                <li class="list-inline-item"><a href="#">Terms & Conditions</a></li>
+            </ul>
+        </div>
+    </footer>
+    <!-- /FOOTER -->
+
+    <!-- SIGN IN / SIGN UP MODAL -->
+    <div id="signInModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <h2>My Account</h2>
+            </div>
+            <div class="tab-buttons">
+                <button id="loginTab" class="active" onclick="openTab('login')">Login</button>
+                <button id="signupTab" onclick="openTab('signup')">Sign Up</button>
+            </div>
+            <div id="login" class="tab-content active">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" placeholder="Username / Email">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="rememberMe">
+                    <label for="rememberMe">Remember me</label>
+                    <a href="#" class="float-right">Forgot Password?</a>
+                </div>
+                <div class="form-actions">
+                    <button type="button">Sign in</button>
+                </div>
+            </div>
+            <div id="signup" class="tab-content">
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <label for="signupFirstName">First Name</label>
+                    <input type="text" id="signupFirstName" placeholder="First Name">
+                </div>
+                <div class="form-group">
+                    <label for="signupLastName">Last Name</label>
+                    <input type="text" id="signupLastName" placeholder="Last Name">
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label for="signupConfirmPassword">Confirm Password</label>
+                    <input type="password" id="signupConfirmPassword" placeholder="Confirm Password">
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="terms">
+                    <label for="terms">I accept the Terms of Service and Privacy Policy</label>
+                </div>
+                <div class="form-actions">
+                    <button type="button">Sign up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /SIGN IN / SIGN UP MODAL -->
+
+    <!-- jQuery Plugins -->
+    <script src="js2/jquery.min.js"></script>
+    <script src="js2/bootstrap.min.js"></script>
+    <script src="js2/slick.min.js"></script>
+    <script src="js2/nouislider.min.js"></script>
+    <script src="js2/jquery.zoom.min.js"></script>
+    <script src="js2/main.js"></script>
+
+    <script>
+        // Fetch and display categories
+        fetch("http://localhost:5148/api/categories")
+            .then(response => response.json())
+            .then(categories => {
+                const categoriesContainer = document.querySelector('.checkbox-filter');
+                categoriesContainer.innerHTML = ''; // Clear existing content
+    
+                categories.forEach(category => {
+                    const categoryElement = `
+                        <div class="input-checkbox">
+                            <input type="checkbox" id="category-${category.categoryId}" data-category-id="${category.categoryId}">
+                            <label for="category-${category.categoryId}">
+                                <span></span>
+                                ${category.name} <!-- Use 'name' instead of 'categoryName' -->
+                                <small>(${Math.floor(Math.random() * 100) + 1})</small>
+                            </label>
+                        </div>
+                    `;
+                    categoriesContainer.innerHTML += categoryElement;
+                });
+    
+                // Add event listeners for filtering
+                document.querySelectorAll('.input-checkbox input').forEach(checkbox => {
+                    checkbox.addEventListener('change', filterProducts);
+                });
+            })
+            .catch(error => console.error('Error fetching categories:', error));
+    
+        // Fetch and display products
+        function fetchProducts() {
+            fetch("http://localhost:5148/api/products")
+                .then(response => response.json())
+                .then(products => {
+                    displayProducts(products);
+                })
+                .catch(error => console.error('Error fetching products:', error));
+        }
+    
+        // Display products based on the category filter
+        function filterProducts() {
+            const selectedCategories = Array.from(document.querySelectorAll('.input-checkbox input:checked')).map(cb => parseInt(cb.dataset.categoryId));
+            fetch("http://localhost:5148/api/products")
+                .then(response => response.json())
+                .then(products => {
+                    if (selectedCategories.length > 0) {
+                        products = products.filter(product => selectedCategories.includes(product.categoryId));
+                    }
+                    displayProducts(products);
+                })
+                .catch(error => console.error('Error fetching products:', error));
+        }
+    
+        // Function to display products
+        function displayProducts(products) {
+            const productList = document.getElementById('product-list');
+            productList.innerHTML = ''; // Clear existing products
+    
+            products.forEach(product => {
+                const imageUrl = `http://localhost:5148${product.imageUrl}`;
+                const productElement = `
+                    <div class="col-md-4 col-xs-6">
+                        <div class="product">
+                            <div class="product-img">
+                                <img src="${imageUrl}" alt="${product.name}" class="card-img-top">
+                                <div class="product-label">
+                                    ${product.isOnSale ? '<span class="sale">-30%</span>' : ''}
+                                    ${product.isNew ? '<span class="new">NEW</span>' : ''}
+                                </div>
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">${product.category ? product.category.name : 'Uncategorized'}</p> <!-- Use 'name' instead of 'categoryName' -->
+                                <h3 class="product-name"><a href="#">${product.name}</a></h3>
+                                <h4 class="product-price">$${product.price.toFixed(2)} 
+                                    ${product.oldPrice ? `<del class="product-old-price">$${product.oldPrice.toFixed(2)}</del>` : ''}
+                                </h4>
+                                <div class="product-rating">
+                                    ${product.rating ? '<i class="fa fa-star"></i>'.repeat(product.rating) + '<i class="fa fa-star-o"></i>'.repeat(5 - product.rating) : ''}
+                                </div>
+                                <div class="product-btns">
+                                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                                    <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+                                    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                                </div>
+                            </div>
+                            <div class="add-to-cart">
+                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                productList.innerHTML += productElement;
+            });
+        }
+    
+        // Initial fetch of products
+        fetchProducts();
+    </script>
+</body>
+
+</html>
