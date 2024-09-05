@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Wecartcore")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+80163511c9200eeda0e627cf8f32f482dd5413be")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c0f217456649df8eeab17136aff8ee5c51c04a1b")]
 [assembly: System.Reflection.AssemblyProductAttribute("Wecartcore")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Wecartcore")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
