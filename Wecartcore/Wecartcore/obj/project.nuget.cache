@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hFkT/GdFilM=",
+  "dgSpecHash": "5K8GTVFhZrE=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Orange\\Desktop\\projects\\Wecartcore\\Wecartcore\\Wecartcore.csproj",
+  "projectFilePath": "C:\\Users\\Orange\\Desktop\\We Cart WEB API\\WeCart-Web-API\\Wecartcore\\Wecartcore\\Wecartcore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Orange\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Orange\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

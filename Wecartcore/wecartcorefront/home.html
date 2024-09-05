@@ -24,34 +24,10 @@
 	
 		<!-- Custom stylesheet -->
 		<link type="text/css" rel="stylesheet" href="css2/style.css"/>
+	<!-- Font Awesome Icon -->
+    <link type="text/css" rel="stylesheet" href="css2/home.css"/>
 	
-		<style>
-			#header { background-color:#222;}
-			#top-header {background-color:#222;}
-			.main .categories .category img { border-radius: 10px; }
-			footer { background-color: #222; color: white; padding-top: 80px; }
-			.bg-dark { background-color: #222 !important; }
-			footer .payment-options img {
-				margin: 5px;
-				width: 50px;
-				height: 50px;
-				object-fit: contain;
-			}
-			footer .footer-links { list-style-type: none; padding: 0; margin-top: 20px;  }
-			footer .footer-links li { display: inline; margin: 0 10px; }
-			footer .footer-links li a { text-decoration: none; color: white; }
-			.col-md-9 { font-size: smaller; }
-			#navbarNav { font-size: smaller; }
-			.cart { width: 40px; height: 40px; }
-			.category-item { display: flex; flex-direction: column; align-items: center; }
-			.category-item img { width: 90%; height: 195px; object-fit: cover; }
-			.category-item p { margin-top: 10px; font-weight: bold; text-align: center; font-size: small; color: #545454; }
-			.mb-5 { font-size: 15px; color: #323131de; display: flex; margin-top: -80px; justify-content: center; font-family:Poppins-Medium; }
-			.links { color:#383838;}
-			
-			
-			
-		</style>
+		
 	</head>
 	<body>
 		<!-- HEADER -->
@@ -138,7 +114,7 @@
 				<div id="responsive-nav">
 					<ul class="main-nav nav navbar-nav">
 						<li class="active"><a href="#">Home</a></li>
-						<li><a href="product.html">Categories</a></li>
+						<li><a href="products.html">Categories</a></li>
 						<li><a href="#">Wishlist</a></li>
 						<li><a href="#">Reviews</a></li>
 						<li><a href="contact.html">Contact</a></li>
@@ -716,8 +692,10 @@
 
 </body>
 <script>
-        // Fetch the categories and display them on the homepage
-        fetch("http://localhost:5148/api/Categories")
+    // This part is on the Home page where categories are listed
+
+// Fetch categories and display them on the homepage
+fetch("http://localhost:5148/api/Categories")
     .then(response => response.json())
     .then(categories => {
         const categoryCards = document.getElementById("categoryCards");
@@ -727,7 +705,7 @@
 
             categoryCards.innerHTML += `
                 <div class="col-md-3 col-sm-6 mb-4">
-                    <a href="products.html?categoryId=${category.categoryId}" class="category-item">
+                    <a href="products.html" class="category-item" onclick="storeCategoryId(${category.categoryId}, '${category.name}')">
                         <img src="${imageUrl}" alt="${category.name}" class="img-fluid rounded">
                         <p>${category.name}</p>
                     </a>
@@ -736,8 +714,14 @@
         });
     })
     .catch(error => console.error("Error fetching categories:", error));
-    </script>
 
+// Store the category ID and name in local storage when clicked
+function storeCategoryId(categoryId, categoryName) {
+    localStorage.setItem('selectedCategoryId', categoryId);
+    localStorage.setItem('selectedCategoryName', categoryName);
+}
+
+</script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

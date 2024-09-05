@@ -212,5 +212,22 @@ namespace WeCartCore.Controllers
             var categories = _context.Categories.ToList();
             return Ok(categories);
         }
+
+
+        // GET: api/Products/latest
+        [HttpGet("latest")]
+        public IActionResult GetLatestProducts()
+        {
+            var latestProducts = _context.Products
+                                         .Include(p => p.Category)
+                                         .OrderByDescending(p => p.ProductId)  // Assuming ProductId represents the order of insertion
+                                         .Take(5)
+                                         .ToList();
+
+            return Ok(latestProducts);
+        }
+
+
+
     }
 }

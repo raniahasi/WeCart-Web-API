@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System;
 using Wecartcore.DTO; // Ensure you have a DTO namespace with the CategoryDto class
+using Microsoft.EntityFrameworkCore;
+
 
 namespace WeCartCore.Controllers
 {
@@ -173,5 +175,27 @@ namespace WeCartCore.Controllers
 
             return Ok(category);
         }
+
+
+
+        // GET: api/categories-with-product-count
+        [HttpGet("categories-with-product-count")]
+        public async Task<IActionResult> GetCategoriesWithProductCount()
+        {
+            var categories = await _context.Categories
+                .Select(c => new
+                {
+                    CategoryId = c.CategoryId,
+                    Name = c.Name,
+                    ProductCount = c.Products.Count() // Count the products in each category
+                })
+                .ToListAsync();
+
+            return Ok(categories);
+        }
+
+
+
+
     }
 }
